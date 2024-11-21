@@ -9,7 +9,7 @@ pipeline {
         stage('SCM Checkout') {
             steps {
                 // Use GitHub credentials for checkout
-                git credentialsId: 'sasibharadwaja', url: 'https://github.com/sasibharadwaja/nodeapp.git'
+                git credentialsId: 'sasibharadwaja', url: 'https://github.com/sasibharadwaja/my-web-app-ci.git'
             }
         }
 
