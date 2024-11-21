@@ -13,6 +13,12 @@ pipeline {
             }
         }
 
+    stage('Debug') {
+        steps {
+            echo "Successfully checked out repository"
+            }
+        }
+
         stage('Build docker image') {
             steps {
                 // Build the Docker image
