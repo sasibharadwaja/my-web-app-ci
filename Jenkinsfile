@@ -2,18 +2,20 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('sasi630-docker')
+        GITHUB_CREDENTIALS = credentials('sasibharadwaja') // Replace with the ID you used
     }
 
     stages {
         stage('SCM Checkout') {
             steps {
-                git 'https://github.com/sasibharadwaja/nodeapp.git'
+                // Use GitHub credentials for checkout
+                git credentialsId: 'sasibharadwaja', url: 'https://github.com/sasibharadwaja/nodeapp.git'
             }
         }
 
         stage('Build docker image') {
             steps {
+                // Build the Docker image
                 sh 'docker build -t sasi630/nodeapp .'
             }
         }
@@ -21,8 +23,8 @@ pipeline {
         stage('Login to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'sasi630-docker') {
-                    }
+                    // Login to Docker Hub
+                    docker.withRegistry('https://registry.hub.docker.com', 'sasi630-docker') {}
                 }
             }
         }
@@ -30,6 +32,7 @@ pipeline {
         stage('Push image') {
             steps {
                 script {
+                    // Push the Docker image
                     docker.image('sasi630/nodeapp').push()
                 }
             }
