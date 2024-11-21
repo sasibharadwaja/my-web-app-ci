@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     environment {
-        GITHUB_CREDENTIALS = credentials('sasibharadwaja') 
+        GITHUB_CREDENTIALS = credentials('sasi630-docker') 
     }
 
     stages {
         stage('SCM Checkout') {
             steps {
-                git credentialsId: 'sasibharadwaja', url: 'https://github.com/sasibharadwaja/my-web-app-ci.git'
+                git credentialsId: 'sasi630-docker', url: 'https://github.com/sasibharadwaja/my-web-app-ci.git'
             }
         }
 
